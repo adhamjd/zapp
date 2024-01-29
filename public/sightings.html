@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+
+    <title>Zap App</title>
+
+<body style="background-color:rgb(232, 236, 235);">
+    </bodystyle>
+    <header>
+        <div class="container">
+            <center>Zap App</center>
+            <nav>
+                <li>
+                    <p><a href='/sightings.html'>Sightings</a></p>
+                </li>
+
+                <li><a href='/'>Submit a form</a></li>
+            </nav>
+
+            <body>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Sightings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>lol</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            
+                <h3>
+                <script>
+                    fetch('http://localhost:3000/sightings', {
+                        method: 'GET',
+                        headers: {
+
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(json => {
+                            //console.log(json);
+                            for (var record of json) {
+                                text = `Name: ${record.Name}
+                                    Mortality: ${record.Mortality}
+                                    Details: ${record.Details}
+                                    Image: ${record.Image}
+                                    Latitude: ${record.Latitude}
+                                    Longitude: ${record.Longitude}`
+
+                                var tbodyRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+                                // Insert a row at the end of table
+                                var newRow = tbodyRef.insertRow();
+
+                                // Insert a cell at the end of the row
+                                var newCell = newRow.insertCell();
+
+                                // Append a text node to the cell
+                                var newText = document.createTextNode(text);
+                                newCell.appendChild(newText);
+
+                            }
+                        });
+                </script>
+                </h3>
+
+
+            </body>
+
+        </div>
+    </header>

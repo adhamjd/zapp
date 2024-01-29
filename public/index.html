@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <link rel="stylesheet" href="style.css">
+
+
+  <title>Zap App</title>
+  <!-- gets the users location -->
+  <script>
+    function updateLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          let form = document.getElementById("form");
+
+          let input = document.createElement("input");
+          let input1 = document.createElement("input");
+          // Gets the latitude and Longitude
+          input.name = 'latitude';
+          input.id = 'latitude';
+          input.value = position.coords.latitude;
+          input.type = 'text';
+
+          input1.name = 'longitude';
+          input1.id = 'longitude';
+          input1.value = position.coords.longitude;
+          input1.type = 'text';
+
+          // assigns the location to the form
+          form.appendChild(input);
+          form.appendChild(input1);
+          form.submit();
+
+
+        }, (err) => {
+          console.log(err);
+        });
+      }
+    }
+    // calls the location function
+    function getPos() {
+      updateLocation();
+    }
+  </script>
+
+</head>
+
+<header>
+  <div class="container">
+    <center>Zap App</center>
+    <nav>
+      <li>
+        <p><a href='/sightings.html'>Sightings</a></p>
+      </li>
+      <li><a href='/'>Submit a form</a></li>
+    </nav>
+
+  </div>
+</header>
+
+<br />
+
+<br />
+
+<br />
+
+<body style="background-color:rgb(232, 236, 235);">
+  </bodystyle>
+
+
+
+
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div class="wrapper">
+    <form id="form" method="post" action="/" enctype="application/x-www-form-urlencoded">
+
+      <label id="name">
+        <input type="text" name="name" placeholder="name" required />
+      </label>
+      <label id="Mortality">
+        <select name="mortality" id="mortality" required />
+        <option value="Alive">Alive</option>
+        <option value="Dead">Dead</option>
+      </label>
+      <label id="Type of Death">
+        <input type="text" name="deathType" placeholder="Type of Death" required />
+      </label>
+
+      <label id="Location" name="location">
+        <input type="text" name="location" placeholder="Location" required />
+      </label>
+
+      <label id="Details" name="details">
+        <input type="text" placeholder="Details" required />
+      </label>
+
+      <input type="file" id="myFile" name="filename" multiple />
+
+
+
+      <br />
+
+      <br />
+      <button type="button" id="button1" onclick="getPos()">Submit Sighting</button>
+
+    </form>
+
+
+</body>
+
+</html>
